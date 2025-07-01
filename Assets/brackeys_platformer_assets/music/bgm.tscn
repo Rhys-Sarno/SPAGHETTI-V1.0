@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://btrw7do64sldx"]
+
+[ext_resource type="AudioStream" uid="uid://ct73u5q01rpwg" path="res://Assets/songs/City_Spirits.mp3" id="1_f7mhk"]
+
+[node name="CitySpirits" type="AudioStreamPlayer"]
+stream = ExtResource("1_f7mhk")
+autoplay = true
+bus = &"Music"
+parameters/looping = false
