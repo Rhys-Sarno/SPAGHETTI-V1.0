@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://8attujw72g33"]
+
+[ext_resource type="AudioStream" uid="uid://ct73u5q01rpwg" path="res://Assets/songs/City_Spirits.mp3" id="1_02ni2"]
+
+[node name="CitySpirits" type="AudioStreamPlayer2D"]
+position = Vector2(712, 750)
+stream = ExtResource("1_02ni2")
+autoplay = true

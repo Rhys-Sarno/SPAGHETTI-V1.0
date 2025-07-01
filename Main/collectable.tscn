@@ -1,0 +1,123 @@
+[gd_scene load_steps=8 format=3 uid="uid://duiippq104dc8"]
+
+[ext_resource type="Script" path="res://Mechanics/Collectable/collectable.gd" id="1_dumxn"]
+[ext_resource type="Texture2D" uid="uid://dj7on1dvduxrp" path="res://Assets/sprites/Ghostpixxells_pixelfood/94_spaghetti.png" id="2_vip7a"]
+[ext_resource type="AudioStream" uid="uid://brtjp20ejk7uw" path="res://Assets/brackeys_platformer_assets/sounds/coin.wav" id="3_b6fsg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_44hwl"]
+radius = 32.0
+
+[sub_resource type="Animation" id="Animation_6kske"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area2D/CollisionShape2D2:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("pickupsound:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_08fr2"]
+resource_name = "pickup"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area2D/CollisionShape2D2:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333334),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("pickupsound:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333334),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6j0xj"]
+_data = {
+"RESET": SubResource("Animation_6kske"),
+"pickup": SubResource("Animation_08fr2")
+}
+
+[node name="Collectable" type="Node2D"]
+script = ExtResource("1_dumxn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -3)
+scale = Vector2(2, 2)
+texture = ExtResource("2_vip7a")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -2)
+shape = SubResource("CircleShape2D_44hwl")
+
+[node name="pickupsound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_b6fsg")
+bus = &"SFX"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6j0xj")
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

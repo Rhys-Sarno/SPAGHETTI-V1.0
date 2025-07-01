@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cn8oi4ra53upj"]
+
+[ext_resource type="FontFile" uid="uid://cuhl68tykb5bg" path="res://Assets/brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="1_irm2m"]
+[ext_resource type="Texture2D" uid="uid://dj7on1dvduxrp" path="res://Assets/sprites/Ghostpixxells_pixelfood/94_spaghetti.png" id="1_sukts"]
+
+[node name="ScoreLabel" type="Label"]
+offset_left = 4.0
+offset_top = -2.0
+offset_right = 44.0
+offset_bottom = 21.0
+theme_override_fonts/font = ExtResource("1_irm2m")
+text = "0"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-17, 6)
+texture = ExtResource("1_sukts")

@@ -1,0 +1,189 @@
+[gd_scene load_steps=25 format=3 uid="uid://dwpqqoqg1r56i"]
+
+[ext_resource type="Script" path="res://Player/player.gd" id="1_bg0wj"]
+[ext_resource type="Script" path="res://Player/state_machine.gd" id="2_17ks3"]
+[ext_resource type="Texture2D" uid="uid://b2lwdqi15cgxg" path="res://Assets/sprites/Chef W2.png" id="3_8iwxc"]
+[ext_resource type="Script" path="res://Player/States/idle.gd" id="3_35adc"]
+[ext_resource type="Script" path="res://Player/States/ground.gd" id="5_g1jeb"]
+[ext_resource type="Script" path="res://Player/States/jump.gd" id="5_mq5na"]
+[ext_resource type="Script" path="res://Player/States/air.gd" id="7_y4yu0"]
+[ext_resource type="PackedScene" uid="uid://dbiigtirg732m" path="res://Effects/explosion.tscn" id="8_s6upw"]
+[ext_resource type="AudioStream" uid="uid://bc8033vvrgr3u" path="res://Assets/brackeys_platformer_assets/sounds/explosion.wav" id="10_ll8tm"]
+[ext_resource type="AudioStream" uid="uid://cnibi0vbhwqrw" path="res://Assets/brackeys_platformer_assets/sounds/jump.wav" id="11_gixwn"]
+[ext_resource type="AudioStream" uid="uid://c6n1447awrsl4" path="res://Assets/brackeys_platformer_assets/sounds/power_up.wav" id="12_sdgeg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7owi8"]
+atlas = ExtResource("3_8iwxc")
+region = Rect2(200, 134, 35, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4yrjy"]
+atlas = ExtResource("3_8iwxc")
+region = Rect2(32, 9, 32, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ka1xl"]
+atlas = ExtResource("3_8iwxc")
+region = Rect2(64, 9, 32, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ademh"]
+atlas = ExtResource("3_8iwxc")
+region = Rect2(96, 9, 32, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wmm4s"]
+atlas = ExtResource("3_8iwxc")
+region = Rect2(128, 9, 32, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2qmeh"]
+atlas = ExtResource("3_8iwxc")
+region = Rect2(32, 92, 32, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dk2j2"]
+atlas = ExtResource("3_8iwxc")
+region = Rect2(32, 51, 32, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0s38q"]
+atlas = ExtResource("3_8iwxc")
+region = Rect2(64, 51, 32, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6pq2y"]
+atlas = ExtResource("3_8iwxc")
+region = Rect2(96, 51, 32, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxdtd"]
+atlas = ExtResource("3_8iwxc")
+region = Rect2(128, 51, 32, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tg7p2"]
+atlas = ExtResource("3_8iwxc")
+region = Rect2(160, 51, 32, 42)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7mrkd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7owi8")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4yrjy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ka1xl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ademh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wmm4s")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2qmeh")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dk2j2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0s38q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6pq2y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vxdtd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tg7p2")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q7ofb"]
+radius = 20.0
+height = 74.0
+
+[node name="Player_dash" type="CharacterBody2D" node_paths=PackedStringArray("state_machine")]
+z_index = 5
+collision_layer = 2
+script = ExtResource("1_bg0wj")
+state_machine = NodePath("StateMachine")
+blast = ExtResource("8_s6upw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, -5)
+scale = Vector2(2.24, 2.3)
+sprite_frames = SubResource("SpriteFrames_7mrkd")
+animation = &"jump"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 4)
+shape = SubResource("CapsuleShape2D_q7ofb")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, 11)
+collision_layer = 2
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, -7)
+shape = SubResource("CapsuleShape2D_q7ofb")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("player", "states", "starting_state")]
+script = ExtResource("2_17ks3")
+player = NodePath("..")
+states = [NodePath("Idle"), NodePath("Ground"), NodePath("Jump"), NodePath("Air")]
+starting_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("ground_state", "jump_state", "air_state")]
+script = ExtResource("3_35adc")
+ground_state = NodePath("../Ground")
+jump_state = NodePath("../Jump")
+air_state = NodePath("../Air")
+
+[node name="Ground" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "jump_state", "air_state")]
+script = ExtResource("5_g1jeb")
+idle_state = NodePath("../Idle")
+jump_state = NodePath("../Jump")
+air_state = NodePath("../Air")
+
+[node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("air_state")]
+script = ExtResource("5_mq5na")
+air_state = NodePath("../Air")
+
+[node name="Air" type="Node" parent="StateMachine" node_paths=PackedStringArray("ground_state")]
+script = ExtResource("7_y4yu0")
+ground_state = NodePath("../Ground")
+
+[node name="spin_timer" type="Timer" parent="."]
+
+[node name="spin_again_timer" type="Timer" parent="."]
+wait_time = 0.01
+
+[node name="Explosion" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_ll8tm")
+bus = &"SFX"
+
+[node name="Jump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_gixwn")
+bus = &"SFX"
+
+[node name="Dash" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_sdgeg")
+bus = &"SFX"
+
+[connection signal="timeout" from="spin_timer" to="." method="_on_spin_timer_timeout"]
+[connection signal="timeout" from="spin_again_timer" to="." method="_on_spin_again_timer_timeout"]

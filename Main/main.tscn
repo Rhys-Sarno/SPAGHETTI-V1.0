@@ -1,0 +1,170 @@
+[gd_scene load_steps=12 format=3 uid="uid://djte2678inil"]
+
+[ext_resource type="Script" path="res://Main/main_menu.gd" id="1_5q4o4"]
+[ext_resource type="Texture2D" uid="uid://bjy8t6ixceh10" path="res://menu image.png" id="1_j1aop"]
+[ext_resource type="FontFile" uid="uid://d3g17wcgyw82v" path="res://Assets/brackeys_platformer_assets/fonts/PixelOperator8-Bold.ttf" id="1_q85nv"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6yw7j"]
+texture = ExtResource("1_j1aop")
+modulate_color = Color(0.374139, 0.374139, 0.374139, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k3yho"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rg77c"]
+bg_color = Color(0.470076, 0.470076, 0.470076, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_02luc"]
+bg_color = Color(0.334744, 0.334744, 0.334744, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1wce6"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iou5w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wwonh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_egfdg"]
+
+[node name="main_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5q4o4")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_6yw7j")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -694.0
+offset_top = 189.0
+offset_right = 694.0
+offset_bottom = 308.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_q85nv")
+theme_override_font_sizes/font_size = 100
+text = "Spaghetti Quest"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -305.0
+offset_top = -66.0
+offset_right = 306.0
+offset_bottom = 392.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 100
+
+[node name="play" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_q85nv")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/focus = SubResource("StyleBoxEmpty_k3yho")
+theme_override_styles/hover = SubResource("StyleBoxFlat_rg77c")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_02luc")
+theme_override_styles/normal = SubResource("StyleBoxFlat_1wce6")
+text = "Play"
+
+[node name="exit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_q85nv")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/focus = SubResource("StyleBoxEmpty_iou5w")
+theme_override_styles/hover = SubResource("StyleBoxFlat_rg77c")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_02luc")
+theme_override_styles/normal = SubResource("StyleBoxFlat_1wce6")
+text = "Exit"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -480.0
+offset_top = -51.0
+offset_right = -36.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/separation = 50
+
+[node name="music" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_q85nv")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wwonh")
+theme_override_styles/hover = SubResource("StyleBoxFlat_rg77c")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_02luc")
+theme_override_styles/normal = SubResource("StyleBoxFlat_1wce6")
+text = "Music"
+
+[node name="sfx" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_q85nv")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxEmpty_egfdg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_rg77c")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_02luc")
+theme_override_styles/normal = SubResource("StyleBoxFlat_1wce6")
+text = "SFX"
+
+[connection signal="pressed" from="VBoxContainer/play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="HBoxContainer/music" to="." method="_on_music_pressed"]
+[connection signal="pressed" from="HBoxContainer/sfx" to="." method="_on_sfx_pressed"]

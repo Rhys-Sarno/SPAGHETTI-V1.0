@@ -1,0 +1,131 @@
+[gd_scene load_steps=11 format=3 uid="uid://cvsphthi026d6"]
+
+[ext_resource type="Script" path="res://Main/levels/endscreen.gd" id="1_3mt7x"]
+[ext_resource type="FontFile" uid="uid://d3g17wcgyw82v" path="res://Assets/brackeys_platformer_assets/fonts/PixelOperator8-Bold.ttf" id="1_0138f"]
+[ext_resource type="Texture2D" uid="uid://bvd7a856okic4" path="res://endscreen.png" id="1_b6gcn"]
+[ext_resource type="FontFile" uid="uid://cuhl68tykb5bg" path="res://Assets/brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="3_5gnsm"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yn5il"]
+texture = ExtResource("1_b6gcn")
+modulate_color = Color(0.394987, 0.394987, 0.394987, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0n7p0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_edong"]
+bg_color = Color(0.470076, 0.470076, 0.470076, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lyc43"]
+bg_color = Color(0.334744, 0.334744, 0.334744, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s4f0q"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wxrva"]
+
+[node name="endscreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3mt7x")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_yn5il")
+
+[node name="thanks" type="Label" parent="."]
+layout_mode = 0
+offset_left = 109.0
+offset_top = 227.0
+offset_right = 1822.0
+offset_bottom = 328.0
+theme_override_fonts/font = ExtResource("1_0138f")
+theme_override_font_sizes/font_size = 100
+text = "Thanks for playing!"
+
+[node name="text" type="Label" parent="."]
+offset_left = 109.0
+offset_top = 413.0
+offset_right = 1822.0
+offset_bottom = 514.0
+theme_override_fonts/font = ExtResource("3_5gnsm")
+theme_override_font_sizes/font_size = 50
+text = "Special thanks:
+Aaron                                Shigeru Miyamoto
+Mr.McGuire                       Draymond Green
+Josh
+Benjamin"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -656.5
+offset_top = -179.0
+offset_right = 656.5
+offset_bottom = -78.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 100
+
+[node name="play" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_0138f")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0n7p0")
+theme_override_styles/hover = SubResource("StyleBoxFlat_edong")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lyc43")
+theme_override_styles/normal = SubResource("StyleBoxFlat_s4f0q")
+text = "Main Menu"
+
+[node name="exit" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_0138f")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wxrva")
+theme_override_styles/hover = SubResource("StyleBoxFlat_edong")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lyc43")
+theme_override_styles/normal = SubResource("StyleBoxFlat_s4f0q")
+text = "Exit"
+
+[connection signal="pressed" from="HBoxContainer/play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="HBoxContainer/exit" to="." method="_on_exit_pressed"]
